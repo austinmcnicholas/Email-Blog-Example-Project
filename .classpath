@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="javasource"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files/Mendix/8.12.7.15098/runtime/bundles/com.mendix.json.jar"/><classpathentry kind="lib" path="C:/Program Files/Mendix/8.12.7.15098/runtime/bundles/com.mendix.logging-api.jar"/><classpathentry kind="lib" path="C:/Program Files/Mendix/8.12.7.15098/runtime/bundles/com.mendix.m2ee-api.jar"/><classpathentry kind="lib" path="C:/Program Files/Mendix/8.12.7.15098/runtime/bundles/com.mendix.public-api.jar"/><classpathentry kind="lib" path="C:/Program Files/Mendix/8.12.7.15098/runtime/bundles/javax.servlet-api.servlet.jar"/>
+	<classpathentry kind="lib" path="userlib/bcpg-jdk15on-167.jar"/><classpathentry kind="lib" path="userlib/bcpkix-jdk15on-167.jar"/><classpathentry kind="lib" path="userlib/bcprov-jdk15on-167.jar"/><classpathentry kind="lib" path="userlib/com.springsource.javax.activation-1.1.1.jar"/><classpathentry kind="lib" path="userlib/commons-codec-1.14.jar"/><classpathentry kind="lib" path="userlib/commons-email-1.5.jar"/><classpathentry kind="lib" path="userlib/commons-io-2.6.jar"/><classpathentry kind="lib" path="userlib/javax.mail-1.6.0.jar"/>
+	<classpathentry kind="output" path="deployment/run/bin"/>
+</classpath>

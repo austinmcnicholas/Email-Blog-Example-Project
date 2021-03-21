@@ -197,9 +197,7 @@ public class Sender
 					}
 					
 					String mimeType = (new MimetypesFileTypeMap()).getContentType((String) attachment.getValue(this.context, FILE_DOCUMENT_NAME));
-					InputStream content = Core.getFileDocumentContent(this.context, attachment);
-		
-					try {
+					try(InputStream content = Core.getFileDocumentContent(this.context, attachment)) {
 						if(content != null) {
 							DataSource source = new ByteArrayDataSource(content, mimeType);
 							String fileName = (String) attachment.getValue(this.context, FILE_DOCUMENT_NAME);
@@ -208,8 +206,8 @@ public class Sender
 							
 							multipart.attach(source, fileName, fileName);
 						}
-					
-					} catch (Exception e) 
+					} 
+					catch (Exception e) 
 					{
 						throw new CoreException("Unable to attach attachment " + (String) attachment.getValue(this.context, FILE_DOCUMENT_NAME) + ".", e);
 					}
@@ -238,6 +236,8 @@ public class Sender
 	        mail.setStartTLSEnabled(true);
 	    }
 	    
+	    mail.setSSLCheckServerIdentity(configuration.useSSLCheckServerIdentity());
+	    
 	    /* because the default session mechanisms uses System.getProperties() (which is not allowed 
 	     * in the cloud), we need to construct a session ourselves. The code to do this was lifted
 	     * from Email.java in the commons-email package.
@@ -264,7 +264,12 @@ public class Sender
 
         if ((mail.isSSLOnConnect() || mail.isStartTLSEnabled()) && mail.isSSLCheckServerIdentity()) {
             properties.setProperty(EmailConstants.MAIL_SMTP_SSL_CHECKSERVERIDENTITY, "true");
-        }
+            
+        	}
+
+			if(configuration.useTLSSMTP()) {
+			properties.setProperty("mail.smtp.ssl.protocols","TLSv1.2");
+			}
 
         if (configuration.getFromAddress() != null) {
             properties.setProperty(EmailConstants.MAIL_SMTP_FROM, configuration.getFromAddress());
